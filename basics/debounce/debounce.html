@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="text"
+      oninput="debounce(main,1000)"
+      id="input"
+      style="align-items: center"
+    />
+  </body>
+</html>
+
+<script>
+  function append(movies_data) {
+    console.log(movies_data);
+  }
+  async function searchmovie() {
+    try {
+      const query = document.getElementById("input").value;
+      let res = await fetch(
+        `https://www.omdbapi.com/?apikey=6a41ddca&s=${query}`
+      );
+      let data = await res.json();
+      const movies = data.Search;
+
+      return movies;
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  async function main() {
+    let data = await searchmovie();
+    if (data === undefined) {
+      return false;
+    }
+    append(data);
+  }
+
+  function debounce(func, delay) {
+    let id;
+    if (id) {
+      clearInterval(id);
+    }
+
+    id = setTimeout(function () {
+      func();
+    }, delay);
+  }
+</script>

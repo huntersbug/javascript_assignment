@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body{
+      width: 500px;
+      height: 1000px;
+      text-align: center;
+      position: absolute;
+      left: 30%;
+    }
+  </style>
+  <body>
+    <input id="month" placeholder="enter the month" />
+    <input id="attendance" placeholder="enter the attendance" />
+
+    <input id="performance" placeholder="enter the performance" />
+    <button id="btn">Add the item</button>
+    <button id="remove_last">Remove last</button>
+    <canvas id="chart" width="100px" height="100px"> </canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="text/javascript">
+      var ctx, chart;
+      window.addEventListener("load", function () {
+        let btn=document.getElementById("btn")
+        let rembtn=document.getElementById("remove_last")
+        rembtn.addEventListener("click",()=>{
+            removelast(chart)
+        })
+        btn.addEventListener("click",()=>{
+            let month=document.getElementById("month").value
+    let attendance=document.getElementById("attendance").value
+    let performance=document.getElementById("performance").value
+            adddata(month,attendance,performance,chart)
+        })
+        ctx = document.getElementById("chart");
+        chart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: [
+              "jan",
+              "feb",
+              "march",
+              "april",
+              "may",
+              "june",
+              "aug",
+              "sept",
+              "oct",
+          
+            ],
+            datasets: [
+              {
+                label: "attendance",
+                data: [100, 50, 60, 40, 20, 30, 90, 50, 60, 40,],
+                backgroundColor: creteColor(255),
+              },
+              {
+                label: "performance",
+                data: [90, 50, 60, 40, 20, 30, 100, 50, 60, 40,],
+                backgroundColor: creteColor(155),
+              },
+            ],
+            borderWidth: 1,
+          },
+          options: {
+            scales: {
+              yAxes: [{ ticks: { beginAtZero: true } }],
+            },
+          },
+        });
+      });
+function adddata(month,attendance,performance,chart){
+  chart.data.labels.push(month)
+ chart.data.datasets[0].data.push(attendance)
+ chart.data.datasets[1].data.push(performance)
+ chart.update()
+}
+
+function removelast(chart){
+  chart.data.labels.pop()
+  chart.data.datasets[0].data.pop()
+  chart.data.datasets[1].data.pop()
+//  chart.data.datasets.forEach(datasets => {
+//     datasets.data.pop()
+//  });
+ chart.update()
+}
+
+
+
+
+
+
+
+
+
+
+
+      function random(num) {
+        return Math.floor(Math.random() * num);
+      }
+
+      function creteColor(num) {
+        return `rgb(${random(255)},${random(255)},${random(255)})`;
+      }
+    </script>
+  </body>
+</html>

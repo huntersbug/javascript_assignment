@@ -1,0 +1,39 @@
+#navbar{
+    display: flex;
+    justify-content: right;
+    height: 40px;
+
+    align-items: center;
+    border: 2px solid black;
+   
+   }
+   #navbar a{
+       text-decoration: none;
+       align-items: center;
+       margin-right: 60px;
+       color:black;
+    }
+   
+  #login-form-div{
+         width: 300px;
+         height: 200px;
+
+        margin: auto;
+        margin-top: 100px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+     
+     }
+     #login-form-div h1{
+         text-align: center;
+
+     }
+ #login-form-div input{
+margin-left: 60px;
+margin-top: 15px;
+   
+   }
+   #login-form-div #btn{
+    margin-left: 120px;
+    background-color: teal;
+    color: white;
+}

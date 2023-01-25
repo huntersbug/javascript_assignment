@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="enter search item" id="query" oninput="queryfun()">
+    <button onclick=getquery()>Submit</button>
+</body>
+</html>
+<script>
+
+    const getquery= async ()=>{
+        let q=document.getElementById("query").value
+        const url=`https://www.omdbapi.com/?apikey=9ff8f09c&t=${q}&plot=short`
+     try{
+         let res=await fetch(url)
+         let data=await res.json()
+         console.log(data)
+     }
+     catch(err){
+         console.log(err)
+     }
+    }
+const queryfun=async ()=>{
+    let q1=document.getElementById("query").value
+        const url=`https://www.omdbapi.com/?apikey=9ff8f09c&t=${q1}&plot=short`
+     try{
+         let res=await fetch(url)
+         let data=await res.json()
+         console.log(data,"before");
+        if(data.Response!="False")
+        {
+            console.log(data,"after")
+        }
+        
+     }
+     catch(err){
+         console.log(err)
+     }
+}
+</script>

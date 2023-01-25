@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #outer{
+            width: 40%;
+            
+            
+            margin: auto;
+            display: flex;
+            margin-top: 100px;
+            justify-content: space-around;
+        }
+        #member-1{
+            width: 100px;
+            height: 100px;
+            border: solid 1px teal;
+       
+        }
+        #member-1 h1{
+            text-align: center;
+        }
+
+
+        #member-2{
+            width: 100px;
+            height: 100px;
+            border: solid 1px teal;
+       
+        }
+        #member-2 h1{
+            text-align: center;
+        }
+
+
+        #member-3{
+            width: 100px;
+            height: 100px;
+            border: solid 1px teal;
+       
+        }
+        #member-3 h1{
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+
+
+
+        button{
+margin-left: 500px;
+margin-top: 60px;
+background-color: aqua;
+border: 1px solid yellowgreen;
+padding: 5px;
+
+
+        }
+        #winner{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   <div><h1 id="winner"></h1></div> 
+    <div id="outer">
+
+       
+        <div id="member-1">
+        <h1 id="placeholder"></h1>
+   
+       </div>
+       <div id="member-2"><h1 id="placeholder1"></h1></div>
+       <div id="member-3"><h1 id="placeholder2"></h1></div>
+       <h1 id="draw"></h1>
+    </div>
+    <button id="button">Roll the Dice</button>
+</body>
+</html>
+<script>
+    var dice1 = {
+  sides: 6,
+  roll: function () {
+    var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber;
+  }
+}
+var dice2 = {
+  sides: 6,
+  roll: function () {
+    var randomNumber1 = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber1;
+  }
+}
+var dice3 = {
+  sides: 6,
+  roll: function () {
+    var randomNumber2 = Math.floor(Math.random() * this.sides) + 1;
+    return randomNumber2;
+  }
+}
+
+
+
+
+function printNumber(number1,number2,number3) {
+  var placeholder = document.getElementById('placeholder');
+  var placeholder1 = document.getElementById('placeholder1');
+  var placeholder2 = document.getElementById('placeholder2');
+  placeholder.innerHTML = number1;
+  placeholder1.innerHTML = number2;
+  placeholder2.innerHTML = number3;
+
+//   The winning dice will be in color green.
+// The Second scorer dice will be in yellow
+// And the dice who scored least should be in red.
+// In case of draw make the dice scoring equal appear blue.
+
+
+ 
+if(number1>number2&&number1>number3)
+  {
+      var div1=document.getElementById("member-1")
+      div1.style.backgroundColor="green"
+   var win= document.getElementById("winner")
+   win.innerText="Member-1 is a winner"
+      if(number2>number3)
+      {
+        var div2=document.getElementById("member-2")
+        div2.style.backgroundColor="yellow"
+        var div3=document.getElementById("member-3")
+        div3.style.backgroundColor="red" 
+      }
+      else{
+        var div3=document.getElementById("member-3")
+        div3.style.backgroundColor="yellow" 
+        var div2=document.getElementById("member-2")
+        div2.style.backgroundColor="red"
+      }
+      }
+
+
+
+
+      else if(number2>number1&&number2>number3)
+      {  var win= document.getElementById("winner")
+   win.innerText="Member-2 is a winner"
+          var div1=document.getElementById("member-2")
+          div1.style.backgroundColor="green"
+        
+          if(number1>number3)
+          {
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="yellow"
+            var div3=document.getElementById("member-3")
+            div3.style.backgroundColor="red" 
+          }
+          else{
+            var div3=document.getElementById("member-3")
+            div3.style.backgroundColor="yellow" 
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="red"
+          }
+          }
+
+
+         else if(number3>number1&&number3>number2)
+      {  var win= document.getElementById("winner")
+   win.innerText="Member-3 is a winner"
+          var div1=document.getElementById("member-3")
+          div1.style.backgroundColor="green"
+        
+          if(number1>number2)
+          {
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="yellow"
+            var div3=document.getElementById("member-2")
+            div3.style.backgroundColor="red" 
+          }
+          else{
+            var div3=document.getElementById("member-2")
+            div3.style.backgroundColor="yellow" 
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="red"
+          }
+          }
+
+          else if(number1===number2&&number2===number3)
+          {  var win= document.getElementById("winner")
+   win.innerHTML="Match Draw"
+            var div1=document.getElementById("member-3")
+            div1.style.backgroundColor="blue"
+            var div3=document.getElementById("member-2")
+            div3.style.backgroundColor="blue" 
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="blue"
+          }
+
+          else{
+            var win= document.getElementById("winner")
+   win.innerHTML="Match Draw"
+            var div1=document.getElementById("member-3")
+            div1.style.backgroundColor="blue"
+            var div3=document.getElementById("member-2")
+            div3.style.backgroundColor="blue" 
+            var div2=document.getElementById("member-1")
+            div2.style.backgroundColor="blue"
+          }
+  
+
+
+
+
+
+
+
+
+}
+  
+
+var button = document.getElementById('button');
+
+button.onclick = function() {
+  var result1 = dice1.roll();
+  var result2 = dice2.roll();
+  var result3 = dice3.roll();
+  printNumber(result1,result2,result3);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

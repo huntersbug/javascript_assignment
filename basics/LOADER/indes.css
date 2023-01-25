@@ -1,0 +1,19 @@
+.body{
+    background-color: black;
+}
+
+.spinner{
+    width: 70px;
+    height: 70px;
+    border: 50%;
+
+    border-top:10px solid #f1f1f1;
+border-radius: 50%;
+animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
